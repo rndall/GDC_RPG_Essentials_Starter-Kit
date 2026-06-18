@@ -2,6 +2,10 @@
 
 [ext_resource type="Texture2D" uid="uid://dd14yvscw8gcd" path="res://assets/sprites/player/Warrior_Blue.png" id="1_1hmtu"]
 [ext_resource type="Script" uid="uid://03p7yosw83m7" path="res://scenes/entities/player/player.gd" id="1_635qg"]
+[ext_resource type="Script" uid="uid://8w6fuxgila8d" path="res://scripts/states/state_machine.gd" id="3_58kc7"]
+[ext_resource type="Script" uid="uid://dswb2hqjn6fg0" path="res://scenes/entities/player/states/player_idle.gd" id="4_nh4ur"]
+[ext_resource type="Script" uid="uid://cle4wn2yx8hm2" path="res://scenes/entities/player/states/player_run.gd" id="5_bjvvg"]
+[ext_resource type="Script" uid="uid://mxsl3nlr3w7u" path="res://scenes/entities/player/states/player_attack.gd" id="6_8akj5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_635qg"]
 radius = 23.0
@@ -172,7 +176,6 @@ script = ExtResource("1_635qg")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1697484246]
 position = Vector2(0, -32)
 texture = ExtResource("1_1hmtu")
-flip_h = true
 hframes = 6
 vframes = 8
 frame = 24
@@ -191,3 +194,19 @@ tree_root = SubResource("AnimationNodeStateMachine_bj7e2")
 anim_player = NodePath("../AnimationPlayer")
 parameters/attack/BlendSpace2D/blend_position = Vector2(0, 0)
 parameters/attack/TimeScale/scale = 1.0
+
+[node name="StateMachine" type="Node" parent="." unique_id=249015021 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_58kc7")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine" unique_id=1711489403 node_paths=PackedStringArray("player")]
+script = ExtResource("4_nh4ur")
+player = NodePath("../..")
+
+[node name="Run" type="Node" parent="StateMachine" unique_id=73517433 node_paths=PackedStringArray("player")]
+script = ExtResource("5_bjvvg")
+player = NodePath("../..")
+
+[node name="Attack" type="Node" parent="StateMachine" unique_id=1935486705 node_paths=PackedStringArray("player")]
+script = ExtResource("6_8akj5")
+player = NodePath("../..")
