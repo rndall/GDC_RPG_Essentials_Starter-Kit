@@ -48,6 +48,26 @@ _data = {
 &"run": SubResource("Animation_nh4ur")
 }
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_635qg"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_58kc7"]
+animation = &"run"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nh4ur"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bjvvg"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8akj5"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_bj7e2"]
+states/idle/node = SubResource("AnimationNodeAnimation_635qg")
+states/idle/position = Vector2(327, 100)
+states/run/node = SubResource("AnimationNodeAnimation_58kc7")
+states/run/position = Vector2(452, 100)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_nh4ur"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_bjvvg"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_8akj5")]
+
 [node name="Player" type="CharacterBody2D" unique_id=1368069472]
 script = ExtResource("1_635qg")
 
@@ -56,6 +76,7 @@ position = Vector2(0, -32)
 texture = ExtResource("1_1hmtu")
 hframes = 6
 vframes = 8
+frame = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1579446266]
 shape = SubResource("CircleShape2D_635qg")
@@ -64,3 +85,7 @@ shape = SubResource("CircleShape2D_635qg")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=693765263]
 libraries/ = SubResource("AnimationLibrary_bjvvg")
+
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1014352654]
+tree_root = SubResource("AnimationNodeStateMachine_bj7e2")
+anim_player = NodePath("../AnimationPlayer")
