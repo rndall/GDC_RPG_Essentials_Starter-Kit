@@ -1,3 +1,4 @@
+class_name StateMachine
 extends Node
 
 @export var initial_state: State
@@ -50,3 +51,12 @@ func _on_child_transitioned(state: State, new_state_name: String) -> void:
 	new_state.enter()
 	
 	current_state = new_state
+
+
+func force_change_state(new_state_name: String) -> void:
+	var new_state = states.get(new_state_name.to_lower())
+	if new_state and current_state != new_state:
+		if current_state:
+			current_state.exit()
+		new_state.enter()
+		current_state = new_state

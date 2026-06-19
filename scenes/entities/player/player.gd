@@ -4,6 +4,7 @@ extends CharacterBody2D
 @export_category("Stats")
 @export var speed: int = 400
 @export var attack_speed: float = 0.6
+@export var attack_damage: int = 60
 
 var move_direction: Vector2 = Vector2.ZERO
 var last_facing_direction: Vector2

@@ -16,3 +16,8 @@ func attack() -> void:
 	
 	await get_tree().create_timer(player.attack_speed).timeout
 	transitioned.emit(self, "idle")
+
+
+func _on_hit_box_area_entered(area: Area2D) -> void:
+	var enemy: Enemy = area.owner
+	enemy.take_damage(player.attack_damage)

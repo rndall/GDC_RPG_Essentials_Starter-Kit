@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://q6bes3c44ur7" path="res://assets/environment/tilesheets/Shadow.png" id="4_uutrq"]
 [ext_resource type="Texture2D" uid="uid://dx44cktvkiunl" path="res://assets/environment/tilesheets/Tilemap_color1.png" id="5_34ald"]
 [ext_resource type="TileSet" uid="uid://d2jx45uhpbqsi" path="res://resources/tilesets/props.tres" id="5_kddbv"]
+[ext_resource type="PackedScene" uid="uid://0yr8pva6gl78" path="res://scenes/entities/enemies/enemy.tscn" id="8_pw728"]
 [ext_resource type="PackedScene" uid="uid://8qcqx6ujpcqo" path="res://scenes/entities/player/player.tscn" id="12_5nfov"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ey6mn"]
@@ -351,3 +352,9 @@ tile_set = ExtResource("5_kddbv")
 
 [node name="Player" parent="." unique_id=1368069472 instance=ExtResource("12_5nfov")]
 position = Vector2(672, 316)
+
+[node name="Enemies" type="Node2D" parent="." unique_id=669104335]
+y_sort_enabled = true
+
+[node name="Enemy" parent="Enemies" unique_id=552186869 instance=ExtResource("8_pw728")]
+position = Vector2(385, 392)
