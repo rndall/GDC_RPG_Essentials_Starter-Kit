@@ -19,15 +19,3 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	move_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-
-
-func _physics_process(_delta: float) -> void:
-	set_velocity(move_direction.normalized() * speed)
-	
-	if velocity:
-		last_facing_direction = move_direction
-	
-		if last_facing_direction.x != 0:
-			sprite_2d.flip_h = last_facing_direction.x < 0
-	
-	move_and_slide()
