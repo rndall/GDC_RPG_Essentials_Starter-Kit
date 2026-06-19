@@ -19,6 +19,10 @@ run/main_scene="uid://cvbceuxhc3e00"
 config/features=PackedStringArray("4.7", "Mobile")
 config/icon="res://icon.svg"
 
+[global_group]
+
+Player=""
+
 [input]
 
 move_left={

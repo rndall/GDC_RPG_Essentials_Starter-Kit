@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://dswb2hqjn6fg0" path="res://scenes/entities/player/states/player_idle.gd" id="4_nh4ur"]
 [ext_resource type="Script" uid="uid://cle4wn2yx8hm2" path="res://scenes/entities/player/states/player_run.gd" id="5_bjvvg"]
 [ext_resource type="Script" uid="uid://mxsl3nlr3w7u" path="res://scenes/entities/player/states/player_attack.gd" id="6_8akj5"]
+[ext_resource type="Script" uid="uid://c1e2hf57qrcl2" path="res://scenes/entities/player/player_die.gd" id="7_bj7e2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_635qg"]
 radius = 23.0
@@ -304,10 +305,14 @@ states/run/position = Vector2(478, 100)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_nh4ur"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_bjvvg"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_8akj5"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_635qg"), "run", "attack", SubResource("AnimationNodeStateMachineTransition_58kc7"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_bj7e2")]
 graph_offset = Vector2(-156.42265, 54.243343)
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bj7e2"]
+radius = 23.0
+height = 70.0
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oxb3u"]
 size = Vector2(20, 46)
 
-[node name="Player" type="CharacterBody2D" unique_id=1368069472]
+[node name="Player" type="CharacterBody2D" unique_id=1368069472 groups=["Player"]]
 collision_mask = 2
 script = ExtResource("1_635qg")
 
@@ -316,7 +321,7 @@ position = Vector2(0, -32)
 texture = ExtResource("1_1hmtu")
 hframes = 6
 vframes = 8
-frame = 15
+frame = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1579446266]
 shape = SubResource("CircleShape2D_635qg")
@@ -333,6 +338,16 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/attack/BlendSpace2D/blend_position = Vector2(0, 0)
 parameters/attack/TimeScale/scale = 1.0
 
+[node name="HurtBox" type="Area2D" parent="." unique_id=1726947314]
+collision_layer = 32
+collision_mask = 0
+input_pickable = false
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=109642932]
+position = Vector2(0, -32)
+shape = SubResource("CapsuleShape2D_bj7e2")
+
 [node name="HitBox" type="Area2D" parent="." unique_id=2040462760]
 position = Vector2(22, -60)
 collision_layer = 0
@@ -340,7 +355,6 @@ collision_mask = 16
 input_pickable = false
 monitoring = false
 monitorable = false
-metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=1611178049]
 position = Vector2(0, -23)
@@ -361,5 +375,9 @@ player = NodePath("../..")
 [node name="Attack" type="Node" parent="StateMachine" unique_id=1935486705 node_paths=PackedStringArray("player")]
 script = ExtResource("6_8akj5")
 player = NodePath("../..")
+
+[node name="Die" type="Node" parent="StateMachine" unique_id=1026294854]
+script = ExtResource("7_bj7e2")
+metadata/_custom_type_script = "uid://c22ykenrhtvr7"
 
 [connection signal="area_entered" from="HitBox" to="StateMachine/Attack" method="_on_hit_box_area_entered"]
