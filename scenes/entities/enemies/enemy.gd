@@ -18,6 +18,7 @@ extends CharacterBody2D
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var animation_playback: AnimationNodeStateMachinePlayback = animation_tree["parameters/playback"]
 @onready var player: Player = get_tree().get_first_node_in_group("Player")
+@onready var navigation_agent_2d: NavigationAgent2D = $NavigationAgent2D
 @onready var effects_scene = %Effects
 
 
@@ -37,3 +38,27 @@ func death() -> void:
 
 func get_distance_to_player() -> float:
 	return global_position.distance_to(player.global_position)
+
+
+func move(target_position: Vector2) -> void:
+	navigation_agent_2d.target_position = target_position
+	var next_path_position: Vector2 = navigation_agent_2d.get_next_path_position()
+	velocity = global_position.direction_to(next_path_position) * speed
+	
+	if navigation_agent_2d.avoidance_enabled:
+		navigation_agent_2d.set_velocity(velocity)
+	else:
+		_on_navigation_agent_2d_velocity_computed(velocity)
+	
+	move_and_slide()
+
+
+func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
+	navigation_agent_2d.velocity = safe_velocity
+
+
+func flip_sprite_h() -> void:
+	if velocity.x < -0.01:
+		sprite_2d.flip_h = true
+	elif velocity.x > 0.01:
+		sprite_2d.flip_h = false

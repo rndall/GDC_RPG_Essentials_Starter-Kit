@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://hjtixt3ibygv" path="res://scenes/entities/enemies/states/enemy_attack.gd" id="6_20lqd"]
 [ext_resource type="Script" uid="uid://ohvxdcnbwwo3" path="res://scenes/entities/enemies/states/enemy_chase.gd" id="6_bii57"]
 [ext_resource type="Script" uid="uid://coq2rxcxyvoid" path="res://scenes/entities/enemies/states/enemy_idle.gd" id="7_j3iiu"]
+[ext_resource type="Script" uid="uid://cnef8v1m6vmkh" path="res://scenes/entities/enemies/states/enemy_return.gd" id="8_uu37f"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_635qg"]
 radius = 23.0
@@ -274,7 +275,6 @@ height = 70.0
 size = Vector2(20, 46)
 
 [node name="Enemy" type="CharacterBody2D" unique_id=1368069472]
-collision_mask = 2
 script = ExtResource("1_20lqd")
 death_packed = ExtResource("2_gflvi")
 
@@ -323,6 +323,16 @@ metadata/_edit_group_ = true
 position = Vector2(0, -23)
 shape = SubResource("RectangleShape2D_bii57")
 
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1914139176]
+path_postprocessing = 1
+avoidance_enabled = true
+radius = 48.0
+neighbor_distance = 128.0
+max_speed = 128.0
+debug_enabled = true
+debug_use_custom = true
+debug_path_custom_color = Color(1, 0, 0, 1)
+
 [node name="StateMachine" type="Node" parent="." unique_id=249015021 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_3gcl1")
 initial_state = NodePath("Idle")
@@ -339,6 +349,11 @@ metadata/_custom_type_script = "uid://bhn4bfija66c8"
 
 [node name="Attack" type="Node" parent="StateMachine" unique_id=372180521 node_paths=PackedStringArray("enemy")]
 script = ExtResource("6_20lqd")
+enemy = NodePath("../..")
+metadata/_custom_type_script = "uid://bhn4bfija66c8"
+
+[node name="Return" type="Node" parent="StateMachine" unique_id=1848319544 node_paths=PackedStringArray("enemy")]
+script = ExtResource("8_uu37f")
 enemy = NodePath("../..")
 metadata/_custom_type_script = "uid://bhn4bfija66c8"
 
