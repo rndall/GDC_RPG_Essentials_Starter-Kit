@@ -6,7 +6,8 @@ extends Node
 var current_state: State:
 	set(new_value):
 		current_state = new_value
-		print("Changed to %s" % current_state.name)
+		if owner is Enemy:
+			print("Changed to %s" % current_state.name)
 var states: Dictionary = {}
 
 

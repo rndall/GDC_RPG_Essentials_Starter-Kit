@@ -13,5 +13,5 @@ func physics_update(_delta: float) -> void:
 		transitioned.emit(self, "attack")
 	elif enemy.get_distance_to_player() <= enemy.aggro_range:
 		transitioned.emit(self, "chase")
-	#elif enemy.global_position.distance_to(enemy.spawn_point) > 32:
-		#transitioned.emit(self, "return")
+	elif enemy.global_position.distance_to(enemy.spawn_point) > 32:
+		transitioned.emit(self, "return")

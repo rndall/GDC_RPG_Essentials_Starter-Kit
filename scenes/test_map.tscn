@@ -380,7 +380,7 @@ position = Vector2(672, 316)
 y_sort_enabled = true
 
 [node name="Enemy" parent="Enemies" unique_id=552186869 instance=ExtResource("8_pw728")]
-position = Vector2(385, 392)
+position = Vector2(527, 312)
 
 [node name="Effects" type="Node2D" parent="." unique_id=731761176]
 unique_name_in_owner = true
