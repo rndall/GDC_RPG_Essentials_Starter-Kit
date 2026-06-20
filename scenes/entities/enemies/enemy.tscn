@@ -274,7 +274,7 @@ height = 70.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bii57"]
 size = Vector2(20, 46)
 
-[node name="Enemy" type="CharacterBody2D" unique_id=1368069472]
+[node name="Enemy" type="CharacterBody2D" unique_id=1368069472 groups=["Enemies"]]
 script = ExtResource("1_20lqd")
 death_packed = ExtResource("2_gflvi")
 

@@ -20,4 +20,4 @@ func attack() -> void:
 
 func _on_hit_box_area_entered(area: Area2D) -> void:
 	var player: Player = area.owner
-	player.take_damage(player.attack_damage)
+	player.take_damage(enemy.attack_damage)

@@ -3,12 +3,15 @@ extends CharacterBody2D
 
 @export_category("Stats")
 @export var speed: int = 400
-@export var attack_speed: float = 0.6
 @export var attack_damage: int = 60
 @export var hitpoints: int = 150
 
 var move_direction: Vector2 = Vector2.ZERO
 var last_facing_direction: Vector2
+var attack_speed: float:
+	set(new_attack_speed):
+		attack_speed = new_attack_speed
+		print("new attack speed", attack_speed)
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var animation_tree: AnimationTree = $AnimationTree
@@ -18,10 +21,17 @@ var last_facing_direction: Vector2
 
 func _ready() -> void:
 	animation_tree.set_active(true)
+	calculate_stats()
 
 
 func _process(_delta: float) -> void:
 	move_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+
+
+func calculate_stats() -> void:
+	attack_speed = Equations.calculate_attack_speed()
+	var time_factor: float = Equations.BASE_ATTACK_SPEED / attack_speed
+	animation_tree.set("parameters/attack/TimeScale/scale", time_factor)
 
 
 func take_damage(damage_taken: int) -> void:

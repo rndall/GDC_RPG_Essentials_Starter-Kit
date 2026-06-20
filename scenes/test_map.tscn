@@ -374,13 +374,19 @@ tile_map_data = PackedByteArray("AAANAAoAAQACAAAAAAAZAAoAAQACAAAAAAAHABAAAQACAAA
 tile_set = SubResource("TileSet_tli4d")
 
 [node name="Player" parent="." unique_id=1368069472 instance=ExtResource("12_5nfov")]
-position = Vector2(672, 316)
+position = Vector2(858, 553)
 
 [node name="Enemies" type="Node2D" parent="." unique_id=669104335]
 y_sort_enabled = true
 
 [node name="Enemy" parent="Enemies" unique_id=552186869 instance=ExtResource("8_pw728")]
 position = Vector2(527, 312)
+
+[node name="Enemy2" parent="Enemies" unique_id=907031830 instance=ExtResource("8_pw728")]
+position = Vector2(353, 430)
+
+[node name="Enemy3" parent="Enemies" unique_id=627272654 instance=ExtResource("8_pw728")]
+position = Vector2(411, 217)
 
 [node name="Effects" type="Node2D" parent="." unique_id=731761176]
 unique_name_in_owner = true

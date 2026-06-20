@@ -267,7 +267,7 @@ blend_point_3/name = &"3"
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_1murt"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_ovg4i"]
-graph_offset = Vector2(-318.92566, 92.98347)
+graph_offset = Vector2(-652.5549, 0)
 nodes/BlendSpace2D/node = SubResource("AnimationNodeBlendSpace2D_5sj0x")
 nodes/BlendSpace2D/position = Vector2(-180, 140)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_1murt")
