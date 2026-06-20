@@ -1,6 +1,9 @@
 class_name Player
 extends CharacterBody2D
 
+@warning_ignore("unused_signal")
+signal game_over(victorious: bool)
+
 @export_category("Stats")
 @export var speed: int = 400
 @export var attack_damage: int = 60
